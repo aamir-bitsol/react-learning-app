@@ -60,11 +60,116 @@ li {
 
 li button {
   display: block;
-  border-radius: 50px;
-  background-color: #ffffff6d;
+  border-radius: 35px;
+  border: none;
+  background-color: #fefefe60;
   color: white;
   justify-content: center;
   text-align: center;
-  padding: 14px 16px;
+  padding: 16px;
   text-decoration: none;
+}
+li button:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: #ffffff2F;
+
+}
+
+.logo{
+  position: absolute;
+  left: 10px;
+}
+.avatar{
+  position:absolute;
+  right: 10px;
+}
+
+.info-form{
+  padding: 10px;
+  margin: 1.3rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+}
+.info-form input{
+  width: 20vw;
+  padding: 5px;
+  border-radius: 2px;
+  border: none;
+}
+.login-form{
+  padding: 50px;
+  background-color: white;
+}
+
+.login-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5D8FC9;
+  height: 100vh;
+}
+
+.login-submit-btn{
+  padding: 7px;
+  width: 200px;
+  border-radius: 10px;  
+  position: absolute;
+  left: 42%;
+  color:white;
+  font-weight: bold;
+  background-color: #007BFF;
+}
+
+.user-name{
+  position: absolute;
+  right: 6%;
+  color:azure;
+
+}
+
+form > label{
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.info-form-submit{
+  border-radius: 10px;
+  padding: 7px;
+  width: 100px;
+  background-color: #007BFF;
+  color: white;
+  font-weight: bold;
+}
+
+main{
+  margin:1.3rem;
+}
+
+.reset-btn{
+  position: absolute;
+  right: 70px;
+  top: 20px;
+  padding: 10px;
+  font-size: small;
+  color: white;
+}
+
+.logout-btn{
+  position: absolute;
+  right: 135px;
+  top: 20px;
+  padding: 10px;
+  font-size: small;
+  color: white;
+}
+.logout-btn:hover{
+    cursor: pointer;
+    color: grey;
+  }
+  .reset-btn:hover{
+    cursor: pointer;
+    color: grey;
 }

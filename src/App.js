@@ -1,17 +1,14 @@
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
-import Login from './login';
-import Home from './home';
-import Profile from './profile';
+import "./App.css";
+
+import { UserContextProvider } from "./context/useUserContext";
+import AppRoutes from "./routes/routes";
 
 function App() {
-  return (
-    <Routes>
-      <Route path='/' element={<Login />} />   
-      <Route path='/home' element={<Home />} />   
-      <Route path='/profile' element={<Profile />} />   
-    </Routes>
-  );
+     return (
+          <UserContextProvider>
+              <AppRoutes />
+          </UserContextProvider>
+     );
 }
 
 export default App;
