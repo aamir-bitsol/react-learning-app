@@ -1,30 +1,17 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useEffect,useState } from "react";
-import { useCookies } from "react-cookie";
+import { useContext, useRef } from "react";
+
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useCookies } from "react-cookie";
+
 import { UserContext } from "../../context/useUserContext";
+import { profileValidationSchema } from "../../utils/form-validations";
 
 export default function Profile() {
      const [cookies] = useCookies();
      const { user, setUser } = useContext(UserContext);
-
-     const profileValidationSchema = yup.object().shape({
-          firstName: yup.string().required("First Name is required"),
-          lastName: yup.string().required("Last Name is required"),
-          email: yup.string().email(),
-          avatar: yup.mixed().test('fileType', 'Invalid image format', (file) => {
-               if (file.length) {
-                 return file && ['image/jpeg', 'image/png'].includes(file[0].type);
-               }
-               return true;
-             }),
-     });
-     
-     useEffect(()=>{
-          console.log(localStorage.getItem('firstName'))
-     }, [])
-
+     const inputRef = useRef(null);
+ 
      const {
           register,
           handleSubmit,
@@ -32,28 +19,33 @@ export default function Profile() {
      } = useForm({ resolver: yupResolver(profileValidationSchema) });
 
      function onSubmit(e) {
-          if(e.avatar.length){
-               setUser({ firstName: e.firstName, lastName: e.lastName, avatar: e.avatar[0].name });
-          } else{
-               setUser({ firstName: e.firstName, lastName: e.lastName, avatar: user.avatar });
-          }
+          setUser({...user, firstName: e.firstName, lastName: e.lastName });
      }
 
+     function handleAvatar(e) {
+          if(e.target.files.length){
+               setUser({...user, avatar: URL.createObjectURL(e.target.files[0])})
+          }
+     }
+    
      return (
           <>
                <form onSubmit={handleSubmit(onSubmit)} className="info-form">
-               <label style={{ backgroundColor: "gray", display: "block", textAlign:"center" }}>
-                    Enter your Details!
-               </label>
+                    <label
+                         style={{ backgroundColor: "gray", display: "block", textAlign: "center" }}
+                    >
+                         Enter your Details!
+                    </label>
                     <label htmlFor="firstName">First Name: </label>
                     <input
-                         id='firstName'
+                         id="firstName"
                          type="text"
                          {...register("firstName", { required: true })}
                          placeholder="Your first name"
                          defaultValue={JSON.parse(localStorage.getItem("firstName"))}
                     />
                     <p>{errors.firstName?.message}</p>
+
                     <label htmlFor="lastName">Last Name: </label>
                     <input
                          id="lastName"
@@ -63,12 +55,13 @@ export default function Profile() {
                          defaultValue={JSON.parse(localStorage.getItem("lastName"))}
                     />
                     <p>{errors.lastName?.message}</p>
+                    
                     <label>User Name: </label>
                     <input defaultValue={cookies.username} disabled /> <br />
+                    
                     <label>Avatar: </label>
-                    <input type="file" {...register('avatar')} />
-                    <p>{errors.avatar?.message}</p>
-                    <input type="submit"  className="info-form-submit"/>
+                    <input ref={inputRef} onChange={handleAvatar} defaultValue={''} accept="image/png, image/jpeg" type="file" />
+                    <input type="submit" className="info-form-submit" />
                </form>
           </>
      );

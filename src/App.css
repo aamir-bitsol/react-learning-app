@@ -151,15 +151,12 @@ main{
 .reset-btn{
   position: absolute;
   right: 70px;
-  top: 20px;
-  padding: 10px;
-  font-size: small;
-  color: white;
+  top: 25px;
 }
 
 .logout-btn{
   position: absolute;
-  right: 135px;
+  right: 100px;
   top: 20px;
   padding: 10px;
   font-size: small;
@@ -168,8 +165,7 @@ main{
 .logout-btn:hover{
     cursor: pointer;
     color: grey;
-  }
-  .reset-btn:hover{
-    cursor: pointer;
-    color: grey;
+}
+.reset-btn:hover{
+  cursor: pointer;
 }

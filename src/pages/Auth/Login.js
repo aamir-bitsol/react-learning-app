@@ -1,9 +1,12 @@
+import { useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+
+import { loginValidationSchema } from "../../utils/form-validations";
+
 
 export default function Login() {
      const navigate = useNavigate();
@@ -15,17 +18,6 @@ export default function Login() {
           }
      }, [cookies.username]);
 
-     const loginValidationSchema = yup.object({
-          username: yup
-               .string()
-               .required("Username is required")
-               .matches(/[a\-z+A\-Z]/, "Must be Alphabets")
-               .test("len", "Must be at least 4 characters ", (val) => val.length > 3),
-          password: yup
-               .string()
-               .required("Password is required")
-               .test("len", "Must be at least 6 characters ", (val) => val.length > 6),
-     });
      const {
           register,
           handleSubmit,
@@ -37,7 +29,7 @@ export default function Login() {
                setCookie("username", e.username);
                navigate("/");
           } else {
-               console.log("Incorrect username or Password");
+               alert("Incorrect username or Password");
           }
      }
 
