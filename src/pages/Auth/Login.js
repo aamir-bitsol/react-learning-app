@@ -7,7 +7,6 @@ import { useCookies } from "react-cookie";
 
 import { loginValidationSchema } from "../../utils/form-validations";
 
-
 export default function Login() {
      const navigate = useNavigate();
      const [cookies, setCookie] = useCookies(["username"]);
@@ -34,20 +33,21 @@ export default function Login() {
      }
 
      return (
-          <div className="login-div">
-               <form onSubmit={handleSubmit(onSubmit)} className="login-form">
-                    <h1 style={{textAlign:"center", fontFamily:"initial"}}>Login</h1>
-                    <label>Username: </label>
+          <div className="vh-100 d-flex justify-content-center align-items-center bg-light gradient-custom">
+               <form onSubmit={handleSubmit(onSubmit)} className="bg-light rounded-2 h-50 d-flex p-2 row col-12 col-md-3 justify-content-center">
+                    <h1 className="text-center">Login</h1>
+                    <hr />
+                    <label className="p-0">Username: </label>
                     <input {...register("username", { required: true })} placeholder="username" />
                     <p>{errors.username?.message}</p>
-                    <label>Password: </label>
+                    <label className="p-0">Password: </label>
                     <input
                          type="password"
                          {...register("password", { required: true })}
                          placeholder="password"
                     />
                     <p>{errors.password?.message}</p>
-                    <input type="submit" className="login-submit-btn" />
+                    <input type="submit" className="btn btn-primary col-6" />
                </form>
           </div>
      );

@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-
+/* 
 .nav-bar{
   display: flex;
   flex-direction: row;
@@ -113,13 +113,9 @@ li button:hover{
 }
 
 .login-submit-btn{
-  padding: 7px;
   width: 200px;
-  border-radius: 10px;  
   position: absolute;
   left: 42%;
-  color:white;
-  font-weight: bold;
   background-color: #007BFF;
 }
 
@@ -128,11 +124,6 @@ li button:hover{
   right: 6%;
   color:azure;
 
-}
-
-form > label{
-  font-weight: bold;
-  margin-right: 10px;
 }
 
 .info-form-submit{
@@ -168,4 +159,15 @@ main{
 }
 .reset-btn:hover{
   cursor: pointer;
-}
+} */
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+  }
